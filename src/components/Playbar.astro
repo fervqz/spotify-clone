@@ -1,3 +1,11 @@
-<footer class="bg-black px-4 pt-2 pb-6">
-  <div class="size-14 bg-blue-200 rounded"></div>
+---
+import NowPlaying from "@/components/NowPlaying.astro";
+import MainControls from "@/components/MainControls.astro";
+import SecondaryControls from "@/components/SecondaryControls.astro";
+---
+
+<footer class="grid grid-cols-3 bg-black px-4 pt-2 pb-6">
+  <NowPlaying />
+  <MainControls />
+  <SecondaryControls />
 </footer>

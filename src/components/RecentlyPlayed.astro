@@ -1,0 +1,23 @@
+---
+const recentItems = [
+  { img: "", title: "Metallica" },
+  { img: "", title: "Your Top Songs 2023" },
+  { img: "", title: "Héroes Del Silencio" },
+  { img: "", title: "Heavy Boost" },
+  { img: "", title: "The Clash" },
+  { img: "", title: "Taylow Swift" },
+  { img: "", title: "The Weeknd" },
+  { img: "", title: "AC/DC" },
+];
+---
+
+<div class="grid grid-cols-2 grid-rows-4 gap-2">
+  {
+    recentItems.map((item) => (
+      <div class="flex flex-row gap-2 items-center bg-elevated-2 rounded overflow-hidden">
+        <div class="bg-blue-200 size-12" />
+        <span class="font-semibold text-sm">{item.title}</span>
+      </div>
+    ))
+  }
+</div>

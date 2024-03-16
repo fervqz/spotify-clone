@@ -1,10 +1,17 @@
-<section class="pt-4 px-6 pb-0 rounded-lg overflow-y-scroll max-h-[89vh]">
-  {
-    Array.from(Array(1000).keys()).map(
-      (n) =>
-        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima vitae"
-    )
-  }
+---
+import MainSectionHeader from "@/components/MainSectionHeader.astro";
+import RecentlyPlayed from "@/components/RecentlyPlayed.astro";
+import MainSectionList from "@/components/MainSectionList.astro";
+import MainSectionFooter from "@/components/MainSectionFooter.astro";
+---
+
+<section
+  class="flex flex-col gap-6 pt-4 pl-6 pr-3 pb-0 rounded-lg overflow-y-scroll max-h-[89vh] relative"
+>
+  <MainSectionHeader />
+  <RecentlyPlayed />
+  {Array.from(Array(10).keys()).map((i) => <MainSectionList />)}
+  <MainSectionFooter />
 </section>
 
 <style>

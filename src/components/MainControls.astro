@@ -1,0 +1,28 @@
+---
+import {
+  CirclePlay,
+  SkipForward,
+  SkipBack,
+  Repeat,
+  Repeat1,
+  Shuffle,
+} from "lucide-astro";
+---
+
+<div class="flex flex-col justify-between">
+  <div class="flex flex-row justify-center items-center gap-5">
+    <Shuffle class="text-gray-400" size={22} />
+    <SkipBack class="text-gray-400" size={22} />
+    <CirclePlay class="text-black bg-white rounded-full" size={32} />
+    <SkipForward class="text-gray-400" size={22} />
+    <Repeat class="text-gray-400" size={22} />
+    <!-- <Repeat1 /> -->
+  </div>
+  <div class="flex flex-row justify-center items-center">
+    <span class="font-light text-xs text-gray-400">0:50</span>
+    <div class="w-full bg-gray-600 rounded-full h-1 mx-4">
+      <div class="bg-white h-1 rounded-full" style="width: 45%"></div>
+    </div>
+    <span class="font-light text-xs text-gray-400">5:10</span>
+  </div>
+</div>
