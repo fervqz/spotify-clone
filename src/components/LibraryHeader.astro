@@ -1,0 +1,33 @@
+---
+import { ArrowRight, Plus, GalleryHorizontalEnd } from "lucide-astro";
+
+// const categories = ["Playlists", "Podcasts & Shows", "Albums", "Artists"];
+const categories = ["Playlists", "Podcasts & Shows"];
+---
+
+<div class="flex flex-col pt-4 px-6">
+  <div class="text-gray-400 flex flex-row flex-wrap gap-4">
+    <GalleryHorizontalEnd />
+    <span class="font-semibold flex-1">Your Library</span>
+    <Plus />
+    <ArrowRight />
+  </div>
+  <div
+    id="categories-container"
+    class="flex flex-row gap-2 overflow-x-scroll pt-6"
+  >
+    {
+      categories.map((category) => (
+        <span class="py-1 px-2 bg-elevated-2 rounded-full text-sm w-[12rem] text-center">
+          {category}
+        </span>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  #categories-container {
+    scrollbar-color: rgba(128, 128, 128, 0.446) transparent;
+  }
+</style>

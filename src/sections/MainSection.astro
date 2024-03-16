@@ -1,0 +1,21 @@
+<section class="pt-4 px-6 pb-0 rounded-lg overflow-y-scroll max-h-[89vh]">
+  {
+    Array.from(Array(1000).keys()).map(
+      (n) =>
+        "Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima vitae"
+    )
+  }
+</section>
+
+<style>
+  section {
+    background: theme("colors.elevated");
+    background: linear-gradient(
+      to bottom,
+      rgb(15, 24, 24),
+      theme("colors.elevated") 550px
+    );
+    overflow: scroll;
+    scrollbar-color: rgba(128, 128, 128, 0.446) transparent;
+  }
+</style>

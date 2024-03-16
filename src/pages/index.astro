@@ -1,0 +1,26 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Playbar from "../components/Playbar.astro";
+import Sidebar from "../sections/Sidebar.astro";
+import NowPlayingView from "../sections/NowPlayingView.astro";
+import MainSection from "../sections/MainSection.astro";
+---
+
+<Layout title="Welcome to Astro.">
+  <main class="flex flex-col flex-wrap min-h-screen relative">
+    <div class="grid grid-cols-12 flex-1 gap-2 p-2 absolute">
+      <div class="col-span-3 flex flex-col">
+        <Sidebar />
+      </div>
+      <div class="col-span-6 flex flex-col">
+        <MainSection />
+      </div>
+      <div class="col-span-3 flex flex-col">
+        <NowPlayingView />
+      </div>
+    </div>
+    <div class="absolute bottom-2 z-10 w-full">
+      <Playbar />
+    </div>
+  </main>
+</Layout>

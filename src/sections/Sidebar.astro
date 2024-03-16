@@ -1,0 +1,22 @@
+---
+import { Home, Search } from "lucide-astro";
+import LibraryList from "../components/LibraryList.astro";
+---
+
+<div class="flex-1 flex flex-col gap-2">
+  <section class="flex flex-col py-4 px-6 bg-elevated rounded-lg h-[7rem]">
+    <ul class="flex-1 flex flex-col gap-4 text-gray-400">
+      <li class="flex-1 flex flex-row flex-wrap items-center gap-5">
+        <Home />
+        <span class="font-semibold">Home</span>
+      </li>
+      <li class="flex-1 flex flex-row flex-wrap items-center gap-5">
+        <Search />
+        <span class="font-semibold">Search</span>
+      </li>
+    </ul>
+  </section>
+  <section class="flex-1 bg-elevated rounded-lg">
+    <LibraryList />
+  </section>
+</div>
