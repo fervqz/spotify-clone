@@ -10,49 +10,6 @@ import {
 } from "lucide-astro";
 ---
 
-<script>
-  function millisToMinutesAndSeconds(ms: number) {
-    const minutes = Math.floor(ms / 60000);
-    const seconds = ((ms % 60000) / 1000).toFixed(0);
-    return minutes + ":" + (parseInt(seconds) < 10 ? "0" : "") + seconds;
-  }
-  function mapRange(
-    value: number,
-    minA: number,
-    maxA: number,
-    minB: number,
-    maxB: number
-  ) {
-    value = Math.min(Math.max(value, minA), maxA);
-    const percentage = (value - minA) / (maxA - minA);
-    const result = percentage * (maxB - minB) + minB;
-    return result;
-  }
-
-  const songLength = 310000;
-  let $progressbar = document.querySelector("#song-progressbar");
-  let $currentTime = document.querySelector("#current-time");
-  let $totalTime = document.querySelector("#total-time");
-  let secondsProgress = 0;
-  let percentageProgress = 0;
-
-  ($totalTime as HTMLElement).innerText = millisToMinutesAndSeconds(songLength);
-
-  const interval = setInterval(() => {
-    secondsProgress += 1000;
-    percentageProgress = mapRange(secondsProgress, 0, songLength, 0, 100);
-    console.log(percentageProgress);
-
-    ($progressbar as HTMLElement).style.width = `${percentageProgress}%`;
-    ($currentTime as HTMLElement).innerText =
-      millisToMinutesAndSeconds(secondsProgress);
-  }, 1000);
-
-  setTimeout(() => {
-    clearInterval(interval);
-  }, songLength);
-</script>
-
 <div class="flex flex-col justify-between col-span-6 px-20">
   <div class="flex flex-row justify-center items-center gap-5">
     <Shuffle
@@ -60,23 +17,27 @@ import {
       size={18}
     />
     <SkipBack
+      id="prev-button"
       class="text-gray-400 hover:text-white hover:cursor-pointer hover:fill-white"
       fill="rgb(156 163 175)"
       stroke-width={3}
       size={18}
     />
     <Pause
+      id="pause-button"
       class="text-black bg-white rounded-full p-2 hover:cursor-pointer hover:scale-105 transition ease-out"
       fill="black"
       size={32}
       stroke-width={1}
     />
-    <!-- <Play
-      class="text-black bg-white rounded-full p-2 hover:cursor-pointer hover:scale-105 transition ease-out"
+    <Play
+      id="play-button"
+      class="hidden text-black bg-white rounded-full p-2 hover:cursor-pointer hover:scale-105 transition ease-out"
       fill="black"
       size={32}
-    /> -->
+    />
     <SkipForward
+      id="next-button"
       class="text-gray-400 hover:text-white hover:cursor-pointer hover:fill-white"
       fill="rgb(156 163 175)"
       stroke-width={3}
@@ -88,14 +49,15 @@ import {
     />
   </div>
   <div class="flex flex-row justify-center items-center">
-    <span id="current-time" class="font-light text-xs text-gray-400">-:-</span>
-    <div class="group w-full py-2">
+    <span id="current-time" class="unselectable font-light text-xs text-gray-400">0:00</span>
+    <div id="song-progressbar-container" class="group w-full py-2 hover:cursor-pointer">
       <div class="bg-gray-600 rounded-full h-1 mx-4">
         <div
-          id="song-progressbar"
+          id="song-progressbar-track"
           class="relative bg-white h-1 rounded-full group-hover:bg-accent"
           style="width: 0%"
         >
+          <!-- Slider thumb -->
           <div
             class="hidden absolute -right-1.5 -top-1 size-3 shadow shadow-black rounded-full bg-white group-hover:block"
           >
@@ -103,6 +65,148 @@ import {
         </div>
       </div>
     </div>
-    <span id="total-time" class="font-light text-xs text-gray-400">-:-</span>
+    <span id="total-time" class="unselectable font-light text-xs text-gray-400">-:-</span>
   </div>
+  
 </div>
+
+<script>
+  import { millisToMinutesAndSeconds, mapRange } from '@/utils/time';
+  import { $ } from '@/utils/querySelector';
+
+  const $playButton = $("#play-button");
+  const $pauseButton = $("#pause-button");
+  const $prevButton = $("#prev-button");
+  const $nextButton = $("#next-button");
+  const $currentTimeLabel = $("#current-time");
+  const $totalTimeLabel = $("#total-time");
+  const $songProgress = $("#song-progressbar-container");
+  const $songProgressTrack = $("#song-progressbar-track");
+
+  let isPlaying = true;;
+  let currentSeconds = 15000; // 00:00
+  const songDuration = 310000; // 05:10
+  const offsetStartEnd = 10;
+  let isDragging = false;
+  const intervalFreq = 1000;
+
+  const updateCurrentSeconds = () => {
+    
+    if(currentSeconds >= songDuration) {
+      pause();
+      return;
+    }
+
+    currentSeconds += intervalFreq;
+    const percent = mapRange(currentSeconds, 0, songDuration, 0, 100);
+    $songProgressTrack.style.width = `${percent}%`;
+    updateCurrentTimeLabel(percent);
+  }
+
+  let interval = setInterval(updateCurrentSeconds, intervalFreq);
+
+  const play = () => {
+    interval = setInterval(updateCurrentSeconds, intervalFreq);
+    isPlaying = true;
+    $playButton.classList.remove('block');
+    $playButton.classList.add('hidden');
+    $pauseButton.classList.remove('hidden');
+    $pauseButton.classList.add('block');
+  }
+  
+  const pause = () => {
+    clearInterval(interval);
+    isPlaying = false;
+    $playButton.classList.remove('hidden');
+    $playButton.classList.add('block');
+    $pauseButton.classList.remove('block');
+    $pauseButton.classList.add('hidden');
+  }
+
+  $totalTimeLabel.innerText = millisToMinutesAndSeconds(songDuration);
+
+  $songProgress.addEventListener("mousedown", (event) => {
+      isDragging = true;
+      updateProgressValue(event);
+      pause();
+  });
+
+  document.addEventListener("mousemove", (event) => {
+      if (isDragging) {
+          updateProgressValue(event);
+      }
+  });
+
+  document.addEventListener("mouseup", () => {
+    if(isDragging && isPlaying){
+      play();
+    }
+
+    isDragging = false;
+    
+  });
+
+  const updateProgressValue = (event: MouseEvent, reset?: boolean) => {
+
+    if(reset) {
+      $songProgressTrack.style.width = `${0}%`;
+      updateCurrentTimeLabel(0);
+      currentSeconds = 0;
+      return;
+    }
+
+      const {left, right} = $songProgress.getBoundingClientRect();
+
+      const percent = mapRange(
+          event.clientX,
+          (left + offsetStartEnd),
+          (right - offsetStartEnd),
+          0,
+          100,
+      );
+
+      $songProgressTrack.style.width = `${percent}%`;
+      updateCurrentTimeLabel(percent);
+      currentSeconds = mapRange(percent, 0, 100, 0, songDuration);
+
+  }
+
+  const updateCurrentTimeLabel = (percent: number) => {
+      const percentInTime = mapRange(
+          percent,
+          0,
+          100,
+          0,
+          songDuration,
+        );
+
+        $currentTimeLabel.innerText = millisToMinutesAndSeconds(percentInTime);
+  }
+
+
+  const resetSong = () => {
+    currentSeconds = 0;
+    updateProgressValue({} as MouseEvent, true);
+  }
+  
+
+  $playButton.addEventListener("click", play);
+  $pauseButton.addEventListener("click", pause);
+  $prevButton.addEventListener('click', resetSong);
+  $nextButton.addEventListener('click', resetSong);
+
+  document.addEventListener('keydown', (event) => {
+
+    if (event.altKey && event.key === 'ArrowRight' || event.key === 'ArrowLeft' ) {
+        resetSong();
+    }
+
+    switch(event.keyCode){
+      case 32:
+        isPlaying ? pause() : play();
+        break;
+
+    }
+
+});
+</script>
