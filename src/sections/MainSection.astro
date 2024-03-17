@@ -6,7 +6,7 @@ import MainSectionFooter from "@/components/MainSectionFooter.astro";
 ---
 
 <section
-  class="flex flex-col gap-6 pt-4 pl-6 pr-3 pb-0 rounded-lg overflow-y-scroll max-h-[89vh] relative"
+  class="styled-scrollbar flex flex-col gap-6 pt-4 pl-6 pr-3 pb-0 rounded-lg overflow-y-scroll max-h-[89vh] relative"
 >
   <MainSectionHeader />
   <RecentlyPlayed />
@@ -22,7 +22,5 @@ import MainSectionFooter from "@/components/MainSectionFooter.astro";
       rgba(53, 53, 53, 0.636),
       theme("colors.elevated") 550px
     );
-    overflow: scroll;
-    scrollbar-color: rgba(128, 128, 128, 0.446) transparent;
   }
 </style>
