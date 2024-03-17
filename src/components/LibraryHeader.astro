@@ -6,11 +6,21 @@ const categories = ["Playlists", "Podcasts & Shows"];
 ---
 
 <div class="flex flex-col pt-4 px-6">
-  <div class="text-gray-400 flex flex-row flex-wrap gap-4">
-    <GalleryHorizontalEnd />
-    <span class="font-semibold flex-1">Your Library</span>
-    <Plus />
-    <ArrowRight />
+  <div class="flex flex-row flex-wrap gap-4 items-center">
+    <div
+      class="flex-1 flex flex-row gap-4 text-gray-400 hover:text-white hover:cursor-pointer transition-colors ease-out"
+    >
+      <GalleryHorizontalEnd />
+      <span class="font-semibold">Your Library</span>
+    </div>
+    <Plus
+      class="text-gray-400 rounded-full p-1 hover:text-white hover:cursor-pointer hover:bg-elevated-2 transition-colors ease-out"
+      size={28}
+    />
+    <ArrowRight
+      class="text-gray-400 rounded-full p-1 hover:text-white hover:cursor-pointer hover:bg-elevated-2 transition-colors ease-out"
+      size={28}
+    />
   </div>
   <div
     id="categories-container"
@@ -23,6 +33,13 @@ const categories = ["Playlists", "Podcasts & Shows"];
         </span>
       ))
     }
+  </div>
+  <div
+    id="tooltip-your-library"
+    role="tooltip"
+    class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700"
+  >
+    Collapse Your Library
   </div>
 </div>
 
