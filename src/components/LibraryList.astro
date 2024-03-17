@@ -63,8 +63,10 @@ const libraries = [
 
 <div>
   <LibraryHeader />
-  <ul class="flex flex-col gap-6 overflow-y-scroll max-h-[65.5vh] pl-6">
-    <li class="flex flex-row text-gray-400 py-1 gap-1 pr-6">
+  <ul
+    class="styled-scrollbar flex flex-col gap-6 overflow-y-scroll max-h-[65.5vh] pl-6"
+  >
+    <li class="flex flex-row text-gray-400 py-1 gap-1 pr-3">
       <Search size={20} />
       <span class="text-sm text-end flex-1">Recents</span>
       <List size={20} />
@@ -84,10 +86,3 @@ const libraries = [
     }
   </ul>
 </div>
-
-<style>
-  ul {
-    overflow: scroll;
-    scrollbar-color: rgba(128, 128, 128, 0.446) transparent;
-  }
-</style>
