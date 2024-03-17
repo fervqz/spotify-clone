@@ -4,11 +4,13 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				'accent': '#1ED760',
+				'accent': '#65D46E',
+				'accent-muted': '#56B55F',
 				'elevated': '#121212',
 				'elevated-2': '#222222',
 				'elevated-3': '#292929',
-				'elevated-4': '#727272',
+				'elevated-4': '#444141',
+				'elevated-5': '#727272',
 			},
 		},
 	},

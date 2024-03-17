@@ -1,6 +1,6 @@
 ---
 import {
-  CirclePlay,
+  Play,
   SkipForward,
   SkipBack,
   Repeat,
@@ -11,12 +11,31 @@ import {
 
 <div class="flex flex-col justify-between">
   <div class="flex flex-row justify-center items-center gap-5">
-    <Shuffle class="text-gray-400" size={22} />
-    <SkipBack class="text-gray-400" size={22} />
-    <CirclePlay class="text-black bg-white rounded-full" size={32} />
-    <SkipForward class="text-gray-400" size={22} />
-    <Repeat class="text-gray-400" size={22} />
-    <!-- <Repeat1 /> -->
+    <Shuffle
+      class="text-accent-muted hover:text-accent hover:cursor-pointer hover:stroke-accent"
+      size={22}
+    />
+    <SkipBack
+      class="text-gray-400 hover:text-white hover:cursor-pointer hover:fill-white"
+      fill="rgb(156 163 175)"
+      stroke-width={3}
+      size={22}
+    />
+    <Play
+      class="text-black bg-white rounded-full p-2 hover:cursor-pointer hover:scale-105 transition ease-out"
+      fill="black"
+      size={32}
+    />
+    <SkipForward
+      class="text-gray-400 hover:text-white hover:cursor-pointer hover:fill-white"
+      fill="rgb(156 163 175)"
+      stroke-width={3}
+      size={22}
+    />
+    <Repeat
+      class="text-gray-400 hover:text-white hover:cursor-pointer hover:stroke-white"
+      size={22}
+    />
   </div>
   <div class="flex flex-row justify-center items-center">
     <span class="font-light text-xs text-gray-400">0:50</span>
