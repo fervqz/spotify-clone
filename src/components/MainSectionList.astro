@@ -16,7 +16,14 @@ import Title from "@/components/Title.astro";
     {
       Array.from(Array(4).keys()).map((i) => (
         <li class="col-span-1 flex flex-col gap-1.5 size-48 rounded-lg p-2 min-w-[12.7rem] h-auto hover:bg-elevated-2 hover:cursor-pointer transition-colors ease-out">
-          <div class="bg-blue-200 aspect-square w-full rounded-lg" />
+          <img
+            role="presentation"
+            alt=""
+            src={`https://unsplash.it/188?randomSeed=${Math.random() * (9 - 0) + 0}`}
+            height="188px"
+            class="aspect-square w-full rounded-lg bg-elevated-2"
+            loading="lazy"
+          />
           <span>Daily Mix 1</span>
           <span class="text-sm text-gray-400">
             Dire Straits, Frank Sinatra, Ray Parker Jr.and more
