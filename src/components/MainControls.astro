@@ -1,6 +1,7 @@
 ---
 import {
   Play,
+  Pause,
   SkipForward,
   SkipBack,
   Repeat,
@@ -8,6 +9,49 @@ import {
   Shuffle,
 } from "lucide-astro";
 ---
+
+<script>
+  function millisToMinutesAndSeconds(ms: number) {
+    const minutes = Math.floor(ms / 60000);
+    const seconds = ((ms % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (parseInt(seconds) < 10 ? "0" : "") + seconds;
+  }
+  function mapRange(
+    value: number,
+    minA: number,
+    maxA: number,
+    minB: number,
+    maxB: number
+  ) {
+    value = Math.min(Math.max(value, minA), maxA);
+    const percentage = (value - minA) / (maxA - minA);
+    const result = percentage * (maxB - minB) + minB;
+    return result;
+  }
+
+  const songLength = 310000;
+  let $progressbar = document.querySelector("#song-progressbar");
+  let $currentTime = document.querySelector("#current-time");
+  let $totalTime = document.querySelector("#total-time");
+  let secondsProgress = 0;
+  let percentageProgress = 0;
+
+  ($totalTime as HTMLElement).innerText = millisToMinutesAndSeconds(songLength);
+
+  const interval = setInterval(() => {
+    secondsProgress += 1000;
+    percentageProgress = mapRange(secondsProgress, 0, songLength, 0, 100);
+    console.log(percentageProgress);
+
+    ($progressbar as HTMLElement).style.width = `${percentageProgress}%`;
+    ($currentTime as HTMLElement).innerText =
+      millisToMinutesAndSeconds(secondsProgress);
+  }, 1000);
+
+  setTimeout(() => {
+    clearInterval(interval);
+  }, songLength);
+</script>
 
 <div class="flex flex-col justify-between col-span-6 px-20">
   <div class="flex flex-row justify-center items-center gap-5">
@@ -21,11 +65,17 @@ import {
       stroke-width={3}
       size={18}
     />
-    <Play
+    <Pause
       class="text-black bg-white rounded-full p-2 hover:cursor-pointer hover:scale-105 transition ease-out"
       fill="black"
       size={32}
+      stroke-width={1}
     />
+    <!-- <Play
+      class="text-black bg-white rounded-full p-2 hover:cursor-pointer hover:scale-105 transition ease-out"
+      fill="black"
+      size={32}
+    /> -->
     <SkipForward
       class="text-gray-400 hover:text-white hover:cursor-pointer hover:fill-white"
       fill="rgb(156 163 175)"
@@ -38,12 +88,13 @@ import {
     />
   </div>
   <div class="flex flex-row justify-center items-center">
-    <span class="font-light text-xs text-gray-400">0:50</span>
+    <span id="current-time" class="font-light text-xs text-gray-400">-:-</span>
     <div class="group w-full py-2">
       <div class="bg-gray-600 rounded-full h-1 mx-4">
         <div
+          id="song-progressbar"
           class="relative bg-white h-1 rounded-full group-hover:bg-accent"
-          style="width: 90%"
+          style="width: 0%"
         >
           <div
             class="hidden absolute -right-1.5 -top-1 size-3 shadow shadow-black rounded-full bg-white group-hover:block"
@@ -52,6 +103,6 @@ import {
         </div>
       </div>
     </div>
-    <span class="font-light text-xs text-gray-400">5:10</span>
+    <span id="total-time" class="font-light text-xs text-gray-400">-:-</span>
   </div>
 </div>
