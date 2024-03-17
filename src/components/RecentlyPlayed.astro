@@ -1,4 +1,5 @@
 ---
+import { Play } from "lucide-astro";
 const recentItems = [
   { img: "", title: "Metallica" },
   { img: "", title: "Your Top Songs 2023" },
@@ -14,9 +15,13 @@ const recentItems = [
 <div class="grid grid-cols-2 grid-rows-4 gap-2">
   {
     recentItems.map((item) => (
-      <div class="flex flex-row gap-2 items-center bg-elevated-2 rounded overflow-hidden hover:bg-elevated-4 hover:cursor-pointer transition-colors ease-out">
+      <div class="group flex flex-row gap-2 items-center bg-elevated-2 rounded overflow-hidden hover:bg-elevated-4 hover:cursor-pointer transition-colors ease-out">
         <div class="bg-blue-200 size-12" />
-        <span class="font-semibold text-sm">{item.title}</span>
+        <span class="flex-1 font-semibold text-sm">{item.title}</span>
+        <Play
+          class="opacity-0 bg-accent text-black fill-black shadow-lg shadow-gray-900 aspect-square rounded-full m-2 p-2 group-hover:opacity-100 transition-opacity ease-out"
+          size={32}
+        />
       </div>
     ))
   }
