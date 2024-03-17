@@ -1,0 +1,36 @@
+---
+const credits = [
+  { name: "Eagles", role: "Main Artist, Producer", url: "#" },
+  { name: "Don Henley", role: "Composer", url: "" },
+  { name: "Glenn Frey", role: "Composer", url: "" },
+];
+---
+
+<div class="bg-elevated-2 rounded-lg flex flex-col gap-4 p-4">
+  <div class="flex flex-row flex-wrap justify-between items-center">
+    <span class="font-semibold">Credits</span>
+    <span
+      class="text-gray-400 font-semibold text-sm hover:text-white hover:underline hover:cursor-pointer hover:scale-105 transition ease-out"
+      >Show all</span
+    >
+  </div>
+
+  {
+    credits.map((author) => (
+      <div class="flex flex-row justify-between">
+        <div class="flex flex-col">
+          <a href={author.url} class="hover:underline">
+            {author.name}
+          </a>
+          <span class="text-gray-400 text-sm">{author.role}</span>
+        </div>
+        <a
+          href="#"
+          class={`${author.url ? "" : "hidden"} h-[30px] font-semibold text-sm py-1 px-4 border border-gray-600 rounded-full hover:border-white hover:scale-105 transition ease-out`}
+        >
+          Follow
+        </a>
+      </div>
+    ))
+  }
+</div>
