@@ -13,13 +13,13 @@ import {
   <div class="flex flex-row justify-center items-center gap-5">
     <Shuffle
       class="text-accent-muted hover:text-accent hover:cursor-pointer hover:stroke-accent"
-      size={22}
+      size={18}
     />
     <SkipBack
       class="text-gray-400 hover:text-white hover:cursor-pointer hover:fill-white"
       fill="rgb(156 163 175)"
       stroke-width={3}
-      size={22}
+      size={18}
     />
     <Play
       class="text-black bg-white rounded-full p-2 hover:cursor-pointer hover:scale-105 transition ease-out"
@@ -30,17 +30,27 @@ import {
       class="text-gray-400 hover:text-white hover:cursor-pointer hover:fill-white"
       fill="rgb(156 163 175)"
       stroke-width={3}
-      size={22}
+      size={18}
     />
     <Repeat
       class="text-gray-400 hover:text-white hover:cursor-pointer hover:stroke-white"
-      size={22}
+      size={18}
     />
   </div>
   <div class="flex flex-row justify-center items-center">
     <span class="font-light text-xs text-gray-400">0:50</span>
-    <div class="w-full bg-gray-600 rounded-full h-1 mx-4">
-      <div class="bg-white h-1 rounded-full" style="width: 45%"></div>
+    <div class="group w-full py-2">
+      <div class="bg-gray-600 rounded-full h-1 mx-4">
+        <div
+          class="relative bg-white h-1 rounded-full group-hover:bg-accent"
+          style="width: 90%"
+        >
+          <div
+            class="hidden absolute -right-1.5 -top-1 size-3 shadow shadow-black rounded-full bg-white group-hover:block"
+          >
+          </div>
+        </div>
+      </div>
     </div>
     <span class="font-light text-xs text-gray-400">5:10</span>
   </div>
