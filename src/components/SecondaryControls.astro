@@ -13,6 +13,32 @@ import {
 } from "lucide-astro";
 ---
 
+<script>
+  import { $ } from "@/utils/querySelector";
+  import { $currentDevice, toggleCurrentDevice } from "@/store/currentDevice";
+
+  const handleOnCurrentDeviceToggle = () => {
+    toggleCurrentDevice();
+  };
+
+  const $currentDeviceButton = $("#current-device-icon");
+  $currentDeviceButton.onclick = handleOnCurrentDeviceToggle;
+
+  $currentDevice.subscribe((e) => {
+    if (e.showBanner) {
+      $currentDeviceButton.classList.add("text-accent-muted");
+      $currentDeviceButton.classList.add("hover:text-accent");
+      $currentDeviceButton.classList.remove("text-gray-400");
+      $currentDeviceButton.classList.remove("hover:text-white");
+    } else {
+      $currentDeviceButton.classList.remove("text-accent-muted");
+      $currentDeviceButton.classList.remove("hover:text-accent");
+      $currentDeviceButton.classList.add("text-gray-400");
+      $currentDeviceButton.classList.add("hover:text-white");
+    }
+  });
+</script>
+
 <div class="flex flex-row items-center justify-end col-span-3">
   <div class="active relative">
     <SquarePlay
@@ -32,9 +58,10 @@ import {
       size={30}
     />
   </div>
-  <div id="now-playing-device" class="relative">
+  <div id="current-device-button" class="relative">
     <MonitorSpeaker
-      class="text-accent-muted py-[0.4rem] hover:text-accent hover:cursor-pointer hover:scale-105 transition ease-out"
+      id="current-device-icon"
+      class="text-gray-400 hover:text-white py-[0.4rem] hover:cursor-pointer hover:scale-105 transition ease-out"
       size={30}
     />
   </div>
@@ -48,7 +75,7 @@ import {
     <div class="bg-gray-600 rounded-full h-1">
       <div
         class="relative bg-white h-1 rounded-full group-hover:bg-accent"
-        style="width: 45%"
+        style="width: 75%"
       >
         <div
           class="hidden absolute -right-1.5 -top-1 size-3 shadow shadow-black rounded-full bg-white group-hover:block"
@@ -77,26 +104,16 @@ import {
       min-width: 4px;
       border-radius: 100%;
     }
-    #now-playing-device::before {
+    #current-device-button::before {
       content: "";
       background-color: theme("colors.accent");
       position: absolute;
       rotate: 45deg;
       left: 7px;
-      bottom: -39px;
+      bottom: -41px;
       min-height: 20px;
       min-width: 20px;
-    }
-
-    #now-playing-device::after {
-      content: "🔈 Playing on Jon Snow's iPhone";
-      font-size: 14px;
-      text-align: center;
-      color: black;
-      position: absolute;
-      left: -150px;
-      bottom: -48px;
-      width: 300px;
+      z-index: 10;
     }
   </style>
-</div>
+

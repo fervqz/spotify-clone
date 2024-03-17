@@ -1,0 +1,33 @@
+---
+import { getCurrentDevice } from "@/store/currentDevice";
+const currentDevice = getCurrentDevice();
+---
+
+<script>
+  import { $ } from "@/utils/querySelector";
+  import { $currentDevice } from "@/store/currentDevice";
+
+  const $currentBanner = $("#current-device-banner");
+  const $currentText = $("#current-device-text");
+
+  $currentDevice.subscribe((e) => {
+    $currentText.innerHTML = e.name;
+
+    if (e.showBanner) {
+      $currentBanner.classList.add("block");
+      $currentBanner.classList.remove("hidden");
+    } else {
+      $currentBanner.classList.add("hidden");
+      $currentBanner.classList.remove("block");
+    }
+  });
+</script>
+
+<div
+  id="current-device-banner"
+  class=`${currentDevice.showBanner ? 'block' : 'hidden'} bg-accent m-2 h-6 rounded flex justify-end items-center text-black transition-opacity ease-out`
+>
+  <p class="z-20 pr-24 text-sm">
+    🔈 Now playing on <span id="current-device-text">{currentDevice.name}</span>
+  </p>
+</div>

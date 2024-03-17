@@ -2,6 +2,7 @@
 import NowPlaying from "@/components/NowPlaying.astro";
 import MainControls from "@/components/MainControls.astro";
 import SecondaryControls from "@/components/SecondaryControls.astro";
+import CurrentDeviceBanner from "@/components/CurrentDeviceBanner.astro";
 ---
 
 <footer class="bg-black pt-2">
@@ -10,5 +11,5 @@ import SecondaryControls from "@/components/SecondaryControls.astro";
     <MainControls />
     <SecondaryControls />
   </div>
-  <div class="bg-accent m-2 h-6 rounded"></div>
+  <CurrentDeviceBanner />
 </footer>
