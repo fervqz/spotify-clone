@@ -44,8 +44,18 @@ import {
       size={30}
     />
   </div>
-  <div class="w-24 bg-gray-600 rounded-full h-1 mr-2">
-    <div class="bg-white h-1 rounded-full" style="width: 45%"></div>
+  <div class="group w-24 py-2">
+    <div class="bg-gray-600 rounded-full h-1">
+      <div
+        class="relative bg-white h-1 rounded-full group-hover:bg-accent"
+        style="width: 45%"
+      >
+        <div
+          class="hidden absolute -right-1.5 -top-1 size-3 shadow shadow-black rounded-full bg-white group-hover:block"
+        >
+        </div>
+      </div>
+    </div>
   </div>
   <PictureInPicture2
     class="text-gray-400 py-[0.4rem] hover:text-white hover:cursor-pointer hover:scale-105 transition ease-out"
