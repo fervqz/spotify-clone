@@ -1,5 +1,5 @@
 import { atom } from 'nanostores';
-import getRandomSong from '@/utils/getRandomSong';
+import getRandomSong from '../utils/getRandomSong';
 
 export interface NowPlaying {
     isPlaying: boolean;

@@ -1,4 +1,4 @@
-import SONGS from "@/constants/songs";
+import SONGS from "../constants/songs";
 
 
 export default function getRandomSong() {

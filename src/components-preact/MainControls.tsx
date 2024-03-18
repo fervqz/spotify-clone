@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'preact/hooks';
 import classNames from 'classnames';
 import { useStore } from '@nanostores/preact';
-import Slider from '@/components-preact/Slider';
-import ShuffleButton from '@/components-preact/ShuffleButton';
-import RepeatButton from '@/components-preact/RepeatButton';
-import { millisToMinutesAndSeconds, mapRange } from "@/utils/time";
-import { $nowPlaying, setNowPlaying } from '@/store/nowPlaying';
-import getRandomSong from '@/utils/getRandomSong';
+import Slider from './/Slider';
+import ShuffleButton from './/ShuffleButton';
+import RepeatButton from './/RepeatButton';
+import { millisToMinutesAndSeconds, mapRange } from "../utils/time";
+import { $nowPlaying, setNowPlaying } from '../store/nowPlaying';
+import getRandomSong from '../utils/getRandomSong';
 import {
   Play,
   Pause,

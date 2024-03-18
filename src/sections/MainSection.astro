@@ -1,8 +1,8 @@
 ---
-import MainSectionHeader from "@/components/MainSectionHeader.astro";
-import RecentlyPlayed from "@/components/RecentlyPlayed.astro";
-import MainSectionList from "@/components/MainSectionList.astro";
-import MainSectionFooter from "@/components/MainSectionFooter.astro";
+import MainSectionHeader from "../components/MainSectionHeader.astro";
+import RecentlyPlayed from "../components/RecentlyPlayed.astro";
+import MainSectionList from "../components/MainSectionList.astro";
+import MainSectionFooter from "../components/MainSectionFooter.astro";
 ---
 
 <section
@@ -29,9 +29,9 @@ import MainSectionFooter from "@/components/MainSectionFooter.astro";
 </section>
 
 <script>
-  import { $ } from "@/utils/querySelector";
-  import { $homeBg } from "@/store/homeBg";
-import { mapRange } from "@/utils/time";
+  import { $ } from "../utils/querySelector";
+  import { $homeBg } from "../store/homeBg";
+import { mapRange } from "../utils/time";
 
   const $homeBgContainer = $("#home-bg-container");
   const $scrollable= $("#scrollable");

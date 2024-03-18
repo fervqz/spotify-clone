@@ -1,11 +1,11 @@
 ---
-import { getCurrentDevice } from "@/store/currentDevice";
+import { getCurrentDevice } from "../store/currentDevice";
 const currentDevice = getCurrentDevice();
 ---
 
 <script>
-  import { $ } from "@/utils/querySelector";
-  import { $currentDevice, type CurrentDevice } from "@/store/currentDevice";
+  import { $ } from "../utils/querySelector";
+  import { $currentDevice, type CurrentDevice } from "../store/currentDevice";
 
   const $currentBanner = $("#current-device-banner");
   const $currentText = $("#current-device-text");

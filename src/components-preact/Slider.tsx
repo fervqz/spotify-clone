@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'preact/hooks';
-import { mapRange } from "@/utils/time";
+import { mapRange } from "../utils/time";
 
 interface Props {
     value: number;
