@@ -1,54 +1,35 @@
-# Astro Starter Kit: Basics
+# Clone of Spotify Web App
 
-```sh
-npm create astro@latest -- --template basics
-```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+> [!IMPORTANT]  
+> **DISCLAIMER:** This project is for educational purposes only and is not intended to be a finished product or a template for other projects, but rather a case study aimed at better understanding the Spotify Web UI and practicing the use of Astro and TailwindCSS. I do not own the rights to any of the names, brands, artists, songs, albums, images, etc., that may be mentioned here.
+ 
+## About
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+[**LIVE DEMO**](#)
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+**Spotify Web App Clone** created using [Astro](https://astro.build/) and [TailwindCSS](https://tailwindcss.com/). All images used are placeholders sourced from [Lorem Picsum
+](https://picsum.photos/) to ensure no infringement of album copyrights.
 
-## 🚀 Project Structure
+Features implemented:
+- [x] Home View
+- [x] Song playbar progress
 
-Inside of your Astro project, you'll see the following folders and files:
+Future features:
+- [ ] Hide Library Sidebar
+- [ ] Search View
+- [ ] Artist View
+- [ ] Album/Playlist View
+- [ ] Full screen
+- [ ] Gradient Change
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Screenshots
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+![Screenhshot of the App at Home](./screenshots/screenshot-1.png)
 
-Any static assets, like images, can be placed in the `public/` directory.
+![Screenhshot of the App at Home](./screenshots/screenshot-2.png)
 
-## 🧞 Commands
+![Screenhshot of the App at Home](./screenshots/screenshot-3.png)
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+![Screenhshot of the App at Home](./screenshots/screenshot-4.png)
