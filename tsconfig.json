@@ -4,7 +4,8 @@
     "baseUrl": "/Users/fer/Dev/spotify-clone",
     "paths": {
       "@/*": [
-        "./src/*"
+        "./src/*",
+        "./src/*/*",
       ]
     },
     "jsx": "react-jsx",
