@@ -6,7 +6,7 @@
  
 ## About
 
-[**LIVE DEMO**](#)
+[**LIVE DEMO**](https://fv-spotify-clone.netlify.app/)
 
 **Spotify Web App Clone** created using [Astro](https://astro.build/) and [TailwindCSS](https://tailwindcss.com/). All images used are placeholders sourced from [Lorem Picsum
 ](https://picsum.photos/) to ensure no infringement of album copyrights.
