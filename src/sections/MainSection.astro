@@ -6,7 +6,7 @@ import MainSectionFooter from "@/components/MainSectionFooter.astro";
 ---
 
 <section
-  class="styled-scrollbar relative flex flex-col gap-6 pt-4 pl-6 pr-3 pb-0 rounded-lg overflow-y-scroll max-h-[89vh]"
+  class="flex-1 relative flex flex-col gap-6 pt-4 pl-6 pr-3 pb-0 rounded-lg bg-elevated"
 >
   <div
     id="home-bg-container"
@@ -14,17 +14,36 @@ import MainSectionFooter from "@/components/MainSectionFooter.astro";
   >
   </div>
   <div class="absolute bg-black opacity-80 inset-0 -z-10"></div>
-  <MainSectionHeader />
-  <RecentlyPlayed />
-  {Array.from(Array(10).keys()).map((i) => <MainSectionList />)}
-  <MainSectionFooter />
+
+  <div id="header" class="absolute top-0 inset-x-0 z-20 bg-opacity-50 py-4 px-6">
+    <MainSectionHeader />
+  </div>
+  <div class="relative h-full">
+    <div id="scrollable" class="styled-scrollbar overflow-y-auto overflow-x-hidden absolute inset-0 flex flex-col gap-6 pt-28">
+      
+      <RecentlyPlayed />
+      {Array.from(Array(10).keys()).map((i) => <MainSectionList />)}
+      <MainSectionFooter />
+    </div>
+  </div>
 </section>
 
 <script>
   import { $ } from "@/utils/querySelector";
   import { $homeBg } from "@/store/homeBg";
+import { mapRange } from "@/utils/time";
 
   const $homeBgContainer = $("#home-bg-container");
+  const $scrollable= $("#scrollable");
+  const $navbar= $("#header");
+
+  $scrollable.addEventListener("scroll", (e) => {
+    // @ts-ignore
+    const scrollValue = e.target.scrollTop;
+
+    console.log(scrollValue);
+    $navbar.style.background = `rgba(18, 18, 18, ${mapRange(scrollValue, 0, 200, 0, 1)})`;
+  });
 
   $homeBg.subscribe((newColor, prevColor) => {
     if (newColor && prevColor) {

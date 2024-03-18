@@ -1,0 +1,45 @@
+---
+import LibraryHeader from "@/components/LibraryHeader.astro";
+import { Search, List } from "lucide-astro";
+import LIBRARIES from "@/constants/libraries";
+
+---
+
+<section class="flex-1 bg-elevated rounded-lg overflow-hidden">
+  
+  <LibraryHeader />
+
+  <div class="relative h-full">
+    <div class="styled-scrollbar overflow-y-auto absolute inset-0">
+      <ul class="styled-scrollbar overflow-y-auto">
+        <li class="flex flex-row text-gray-400 gap-1 px-4 justify-between mb-4">
+          <Search class="p-1.5 rounded-full hover:bg-elevated-2 hover:text-white hover:cursor-pointer" size={32} />
+          <div class="flex flex-row gap-2 items-center hover:text-white hover:scale-105 transition ease-out hover:cursor-pointer">
+            <span class="text-sm text-end flex-1">Recents</span>
+            <List size={18} />
+          </div>
+        </li>
+        {
+          [...LIBRARIES, ...LIBRARIES].map((library) => (
+            <li class="flex flex-row flex-wrap gap-3 mx-2 p-2 rounded hover:bg-elevated-2 hover:cursor-pointer transition-colors ease-out">
+              <img
+                role="presentation"
+                alt=""
+                src={`https://picsum.photos/44?random=${Math.random() * (9 - 0) + 0}`}
+                height="44px"
+                class="size-12 rounded bg-elevated-2"
+                loading="lazy"
+              />
+              <div class="flex flex-col">
+                <span>{library.title}</span>
+                <span class="font-light text-gray-400 text-sm">
+                  {library.subtitle}
+                </span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+  </div>
+</div>
+</section>

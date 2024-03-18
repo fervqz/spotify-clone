@@ -5,7 +5,7 @@ import { ArrowRight, Plus, GalleryHorizontalEnd } from "lucide-astro";
 const categories = ["Playlists", "Podcasts & Shows"];
 ---
 
-<div class="flex flex-col pt-4 px-6">
+<div class="flex flex-col pt-4 pb-2 px-6">
   <div class="flex flex-row flex-wrap gap-4 items-center">
     <div
       class="flex-1 flex flex-row gap-4 text-gray-400 hover:text-white hover:cursor-pointer transition-colors ease-out"
@@ -25,7 +25,7 @@ const categories = ["Playlists", "Podcasts & Shows"];
   <div class="styled-scrollbar flex flex-row gap-2 overflow-x-scroll pt-6">
     {
       categories.map((category) => (
-        <span class="py-1 px-2 bg-elevated-2 rounded-full text-sm w-[12rem] text-center">
+        <span class="py-1 px-4 bg-elevated-2 rounded-full text-sm text-center">
           {category}
         </span>
       ))

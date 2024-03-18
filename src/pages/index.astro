@@ -1,26 +1,31 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import Playbar from "../components/Playbar.astro";
-import Sidebar from "../sections/Sidebar.astro";
-import NowPlayingView from "../sections/NowPlayingView.astro";
-import MainSection from "../sections/MainSection.astro";
+import Layout from "@/layouts/Layout.astro";
+import Playbar from "@/components/Playbar.astro";
+import SidebarHeader from "@/sections/SidebarHeader.astro";
+import LibraryListSection from "@/sections/LibraryListSection.astro";
+import NowPlayingView from "@/sections/NowPlayingView.astro";
+import MainSection from "@/sections/MainSection.astro";
 ---
 
 <Layout title="Clonify Premium">
-  <main class="flex flex-col flex-wrap min-h-screen relative">
-    <div class="grid grid-cols-12 flex-1 gap-2 p-2 absolute">
-      <div class="col-span-3 flex flex-col">
-        <Sidebar />
+  <main>
+
+    <div class="min-h-[100vh] flex flex-col">
+      <div class="flex-1 flex flex-row gap-2 p-2">
+        <div class="flex flex-col gap-2 flex-1">
+          <SidebarHeader/>
+          <LibraryListSection />
+        </div>
+        <div class="flex w-[50%]">
+          <MainSection/>
+        </div>
+        <div id="card" class="flex flex-col flex-1">
+          <NowPlayingView/>
+        </div>
       </div>
-      <div class="col-span-6 flex flex-col">
-        <MainSection />
+      <div id="footer">
+        <Playbar/>
       </div>
-      <div class="col-span-3 flex flex-col">
-        <NowPlayingView />
-      </div>
-    </div>
-    <div class="absolute bottom-0 z-10 w-full">
-      <Playbar />
     </div>
   </main>
 </Layout>

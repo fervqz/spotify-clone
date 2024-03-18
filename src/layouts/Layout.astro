@@ -48,12 +48,14 @@ const { title } = Astro.props;
     <slot />
   </body>
 </html>
+
 <style is:global>
   html {
     background: #000;
     font-family: "DM Sans Variable", system-ui, sans-serif;
     color: #fff;
-    overflow-y: hidden;
+    box-sizing: border-box;
+    overflow: hidden;
   }
 
   *.unselectable {
@@ -65,7 +67,7 @@ const { title } = Astro.props;
   }
 
   .styled-scrollbar {
-    overflow: auto;
+    overflow-y: auto;
     scrollbar-color: transparent transparent;
     transition: scrollbar-color 0.1s ease-out;
   }

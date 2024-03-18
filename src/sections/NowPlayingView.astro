@@ -8,8 +8,9 @@ import NowPlayingNextInQueue from "@/components/NowPlayingNextInQueue.astro";
 ---
 
 <section
-  class="styled-scrollbar flex-1 flex flex-col gap-2 py-4 pl-4 bg-elevated rounded-lg h-full overflow-y-scroll max-h-[88.2vh]"
+  class="flex-1 flex flex-col gap-2 bg-elevated rounded-lg relative"
 >
+<div class="styled-scrollbar overflow-y-auto absolute inset-0 py-4 pl-4">
   <div class="flex flex-row items-center mb-2 justify-between">
     <span class="font-bold hover:underline hover:cursor-pointer"
       >Disposable Heroes</span
@@ -26,4 +27,5 @@ import NowPlayingNextInQueue from "@/components/NowPlayingNextInQueue.astro";
     <NowPlayingMerch />
     <NowPlayingNextInQueue />
   </div>
+</div>
 </section>
