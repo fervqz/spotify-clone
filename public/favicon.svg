@@ -4,25 +4,3 @@
 <circle class="ring" cx="516" cy="516" r="227.5" stroke="black" stroke-width="77"/>
 <circle class="point" cx="516" cy="516" r="56.4097" fill="black" stroke="black" stroke-width="11.8757"/>
 </svg>
-<style>
-
-circle.ring {
-    stroke: white;
-}
-
-circle.point {
-    stroke: white;
-    fill: white;
-}
-
-@media (prefers-color-scheme:dark){
-    circle.ring {
-        stroke: black;
-    }
-    circle.point {
-        stroke: black;
-        fill: black;
-    }
-}
-
-</style>
