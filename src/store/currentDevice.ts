@@ -21,7 +21,6 @@ export function getCurrentDevice() {
 }
 
 export function toggleCurrentDevice() {
-  console.log('toggle');
   const newValue = !$currentDevice.get().showBanner;
   $currentDevice.set({
     ...$currentDevice.get(),

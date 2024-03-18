@@ -22,7 +22,7 @@ import MainSectionFooter from "@/components/MainSectionFooter.astro";
     <div id="scrollable" class="styled-scrollbar overflow-y-auto overflow-x-hidden absolute inset-0 flex flex-col gap-6 pt-28">
       
       <RecentlyPlayed />
-      {Array.from(Array(10).keys()).map((i) => <MainSectionList />)}
+      {Array.from(Array(10).keys()).map(() => <MainSectionList />)}
       <MainSectionFooter />
     </div>
   </div>

@@ -14,7 +14,7 @@ import Title from "@/components/Title.astro";
 
   <ul class="grid grid-cols-4">
     {
-      Array.from(Array(4).keys()).map((i) => (
+      Array.from(Array(4).keys()).map(() => (
         <li class="col-span-1 flex flex-col gap-1.5 size-48 rounded-lg p-2 min-w-[12.7rem] h-auto hover:bg-elevated-2 hover:cursor-pointer transition-colors ease-out">
           <img
             role="presentation"

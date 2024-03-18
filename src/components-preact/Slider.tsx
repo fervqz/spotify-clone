@@ -3,51 +3,51 @@ import { mapRange } from "@/utils/time";
 
 interface Props {
     value: number;
-    onDragStart?: () => void;
-    onDragging?: () => void;
-    onDragEnd?: () => void;
+    onDragStart?: (value: number) => void;
+    onDragging?: (value: number) => void;
+    onDragEnd?: (value: number) => void;
 }
 
 export default function Slider(props: Props) {
 
     const {
         value,
-        onDragStart = () => {},
-        onDragging = () => {},
-        onDragEnd = () => {},
+        onDragStart = (_: number) => {},
+        onDragging = (_: number) => {},
+        onDragEnd = (_: number) => {},
     } = props;
 
     const offsetStartEnd = 10;
     const [isDragging, setIsDragging] = useState(false);
-    const [progressValue, setProgressValue] = useState();
+    const [progressValue, setProgressValue] = useState(0);
 
-    const sliderRef = useRef<HTMLElement | undefined>(undefined);
-    const sliderValueRef = useRef<HTMLElement | undefined>(undefined);
+    const sliderRef = useRef<HTMLDivElement | undefined>(undefined);
+    const sliderValueRef = useRef<HTMLDivElement | undefined>(undefined);
 
     useEffect(() => {
         setProgressValue(value);
     }, [value]);
 
-    const handleOnMouseDown = (e: MouseEvent) => {
+    const handleOnMouseDown = () => {
         setIsDragging(true);
-        updateSlider(e);
-        onDragStart();
+        onDragStart(progressValue);
     }
 
     const handleOnMouseMove = (e: MouseEvent) => {
         if(isDragging){
             updateSlider(e);
-            onDragging();
+            onDragging(progressValue);
         }
     }
 
     const handleOnMouseUp = (e: MouseEvent) => {
+        updateSlider(e);
         setIsDragging(false);
         onDragEnd(progressValue);
     }
 
     const updateSlider = (e: MouseEvent) => {
-        const { left, right } = sliderRef.current.getBoundingClientRect();
+        const { left, right } = sliderRef.current?.getBoundingClientRect() ?? { left: 0, right: 0};
         const percent = mapRange(
             e.clientX,
             left + offsetStartEnd,
@@ -59,6 +59,7 @@ export default function Slider(props: Props) {
     }
 
     return (<div
+    // @ts-ignore
         ref={sliderRef}
         className="group w-full py-2 hover:cursor-pointer"
         onMouseDown={handleOnMouseDown}
@@ -67,6 +68,7 @@ export default function Slider(props: Props) {
     >
         <div className="bg-gray-600 rounded-full h-1 mx-2">
             <div
+            // @ts-ignore
                 ref={sliderValueRef}
                 className="relative bg-white h-1 rounded-full group-hover:bg-accent"
                 style={{ width: `${progressValue}%` }}

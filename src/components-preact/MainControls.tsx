@@ -55,7 +55,7 @@ export default function MainControls() {
     setPlayingInterval(undefined);
   }
 
-  const onDragEnd = (progressValue) => {
+  const onDragEnd = (progressValue: number) => {
     const mappedMilliseconds = mapRange(
       progressValue,
       0,

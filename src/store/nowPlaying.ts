@@ -14,7 +14,7 @@ export interface NowPlaying {
 
 export const $nowPlaying = atom<NowPlaying>(getRandomSong())
 
-export function setNowPlaying(newNowPlaying: string) {
+export function setNowPlaying(newNowPlaying: any) {
     $nowPlaying.set({
         ...$nowPlaying.get(),
         ...newNowPlaying,
