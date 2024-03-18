@@ -1,22 +1,28 @@
 ---
 import { Play } from "lucide-astro";
 const recentItems = [
-  { img: "", title: "Metallica" },
-  { img: "", title: "Your Top Songs 2023" },
-  { img: "", title: "Héroes Del Silencio" },
-  { img: "", title: "Heavy Boost" },
-  { img: "", title: "The Clash" },
-  { img: "", title: "Taylow Swift" },
-  { img: "", title: "The Weeknd" },
-  { img: "", title: "AC/DC" },
+  { img: "", title: "Metallica", bgColor: "from-yellow-300" },
+  { img: "", title: "Your Top Songs 2023", bgColor: "from-green-300" },
+  { img: "", title: "Héroes Del Silencio", bgColor: "from-blue-300" },
+  { img: "", title: "Rock Party", bgColor: "from-red-300" },
+  { img: "", title: "The Clash", bgColor: "from-orange-300" },
+  { img: "", title: "Taylow Swift", bgColor: "from-slate-300" },
+  { img: "", title: "The Weeknd", bgColor: "from-gray-300" },
+  { img: "", title: "AC/DC", bgColor: "from-purple-300" },
 ];
 ---
 
 <div class="grid grid-cols-2 grid-rows-4 gap-2">
   {
     recentItems.map((item) => (
-      <div class="group flex flex-row gap-2 items-center bg-elevated-2 rounded overflow-hidden hover:bg-elevated-4 hover:cursor-pointer transition-colors ease-out">
+      <div
+        data-recent-cards
+        data-bg-gradient={item.bgColor}
+        class="group flex flex-row gap-2 items-center bg-elevated-2 rounded overflow-hidden hover:bg-elevated-4 hover:cursor-pointer transition-colors ease-out"
+      >
         <img
+          data-recent-cards
+          data-bg-gradient={item.bgColor}
           role="presentation"
           alt=""
           src={`https://picsum.photos/188?random=${Math.random() * (9 - 0) + 0}`}
@@ -24,8 +30,16 @@ const recentItems = [
           class=" size-12 bg-elevated-3"
           loading="lazy"
         />
-        <span class="flex-1 font-semibold text-sm">{item.title}</span>
+        <span
+          data-recent-cards
+          data-bg-gradient={item.bgColor}
+          class="flex-1 font-semibold text-sm"
+        >
+          {item.title}
+        </span>
         <Play
+          data-recent-cards
+          data-bg-gradient={item.bgColor}
           class="opacity-0 bg-accent text-black fill-black shadow-lg shadow-gray-900 aspect-square rounded-full m-2 p-2 group-hover:opacity-100 transition-opacity ease-out"
           size={32}
         />
@@ -33,3 +47,21 @@ const recentItems = [
     ))
   }
 </div>
+
+<script>
+  import { $$ } from "@/utils/querySelector";
+  import { setHomeBg, getHomeBg } from "@/store/homeBg";
+
+  const currentColor = getHomeBg();
+
+  const $cards = $$("[data-recent-cards]");
+
+  $cards.map((card) =>
+    card.addEventListener("mouseover", (e) => {
+      const bgColor = (e.target as HTMLElement).getAttribute(
+        "data-bg-gradient"
+      );
+      setHomeBg(bgColor || currentColor);
+    })
+  );
+</script>

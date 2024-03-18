@@ -6,21 +6,38 @@ import MainSectionFooter from "@/components/MainSectionFooter.astro";
 ---
 
 <section
-  class="styled-scrollbar flex flex-col gap-6 pt-4 pl-6 pr-3 pb-0 rounded-lg overflow-y-scroll max-h-[89vh] relative"
+  class="styled-scrollbar relative flex flex-col gap-6 pt-4 pl-6 pr-3 pb-0 rounded-lg overflow-y-scroll max-h-[89vh]"
 >
+  <div
+    id="home-bg-container"
+    class="absolute bg-gradient-to-b to-transparent transition-opacity ease-out inset-0 -z-20 duration-[1500ms] from-[#353535a2]"
+  >
+  </div>
+  <div class="absolute bg-black opacity-80 inset-0 -z-10"></div>
   <MainSectionHeader />
   <RecentlyPlayed />
   {Array.from(Array(10).keys()).map((i) => <MainSectionList />)}
   <MainSectionFooter />
 </section>
 
-<style>
-  section {
-    background: theme("colors.elevated");
-    background: linear-gradient(
-      to bottom,
-      rgba(53, 53, 53, 0.636),
-      theme("colors.elevated") 550px
-    );
-  }
-</style>
+<script>
+  import { $ } from "@/utils/querySelector";
+  import { $homeBg } from "@/store/homeBg";
+
+  const $homeBgContainer = $("#home-bg-container");
+
+  $homeBg.subscribe((newColor, prevColor) => {
+    if (newColor && prevColor) {
+      $homeBgContainer.classList.add("opacity-0");
+
+      setTimeout(() => {
+        $homeBgContainer.classList.remove(prevColor);
+        $homeBgContainer.classList.add(newColor);
+
+        $homeBgContainer.classList.remove("opacity-0");
+      }, 800);
+    }
+
+    console.log("BACKGROUND => ", $homeBgContainer.classList[7]);
+  });
+</script>
