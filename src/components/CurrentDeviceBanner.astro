@@ -5,12 +5,12 @@ const currentDevice = getCurrentDevice();
 
 <script>
   import { $ } from "@/utils/querySelector";
-  import { $currentDevice } from "@/store/currentDevice";
+  import { $currentDevice, type CurrentDevice } from "@/store/currentDevice";
 
   const $currentBanner = $("#current-device-banner");
   const $currentText = $("#current-device-text");
 
-  $currentDevice.subscribe((e) => {
+  $currentDevice.subscribe((e: CurrentDevice) => {
     $currentText.innerHTML = e.name;
 
     if (e.showBanner) {
