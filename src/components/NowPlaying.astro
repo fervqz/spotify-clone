@@ -4,6 +4,7 @@ import { Heart } from "lucide-astro";
 
 <div class="flex flex-row gap-4 items-center col-span-3">
   <img
+    id="song-cover"
     role="presentation"
     alt=""
     src="https://picsum.photos/56"
@@ -13,12 +14,43 @@ import { Heart } from "lucide-astro";
   />
 
   <div class="flex flex-col">
-    <span class="text-sm">Disposable Heroes</span>
-    <span class="text-xs text-gray-400">Metallica</span>
+    <span id="song-name" class="text-sm">--</span>
+    <span id="song-artist" class="text-xs text-gray-400">--</span>
   </div>
 
   <Heart
+    id="song-icon"
     class="text-accent-muted fill-accent-muted hover:text-accent hover:fill-accent hover:scale-105 hover:cursor-pointer transition ease-out"
     size={16}
   />
 </div>
+
+<script>
+  import { $nowPlaying } from "@/store/nowPlaying";
+  import { $ } from "@/utils/querySelector"
+
+  const $songCover = $('#song-cover');
+  const $songName = $('#song-name');
+  const $songArtist = $('#song-artist');
+  const $songIcon = $('#song-icon');
+
+  $nowPlaying.subscribe((e) => {
+    // @ts-ignore
+    $songCover.src = e.song.cover;
+    $songName.innerText = e.song.name;
+    $songArtist.innerText = e.song.artist;
+
+    if(e.isLiked) {
+      $songIcon.classList.replace("text-gray-400", "text-accent-muted");
+      $songIcon.classList.replace("fill-none", "fill-accent-muted");
+      $songIcon.classList.replace("hover:text-white", "hover:text-accent");
+      $songIcon.classList.replace("hover:fill-none", "hover:fill-accent");
+    } else {  
+      $songIcon.classList.replace("text-accent-muted", "text-gray-400");
+      $songIcon.classList.replace("fill-accent-muted", "fill-none");
+      $songIcon.classList.replace("hover:text-accent", "hover:text-white");
+      $songIcon.classList.replace("hover:fill-accent", "hover:fill-none");
+    }
+
+  });
+</script>

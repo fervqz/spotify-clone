@@ -60,11 +60,6 @@ const { title } = Astro.props;
     -moz-user-select: -moz-none;
     -khtml-user-select: none;
     -webkit-user-select: none;
-
-    /*
-     Introduced in IE 10.
-     See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
-   */
     -ms-user-select: none;
     user-select: none;
   }
@@ -78,4 +73,15 @@ const { title } = Astro.props;
     overflow-y: auto;
     scrollbar-color: rgba(128, 128, 128, 0.446) transparent;
   }
+
+  .active::before {
+      content: "";
+      background-color: theme("colors.accent-muted");
+      position: absolute;
+      left: 13px;
+      bottom: -4px;
+      min-height: 4px;
+      min-width: 4px;
+      border-radius: 100%;
+    }
 </style>

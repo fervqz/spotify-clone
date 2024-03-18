@@ -1,11 +1,14 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "/Users/fer/Dev/spotify-clone",
     "paths": {
       "@/*": [
         "./src/*"
       ]
-    }
+    },
+    "jsx": "react-jsx",
+    "tsx": "react-tsx",
+    "jsxImportSource": "preact"
   }
 }

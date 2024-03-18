@@ -1,0 +1,14 @@
+{
+    "useTabs": true,
+    "singleQuote": true,
+    "trailingComma": "none",
+    "semi": false,
+    "printWidth": 100,
+    "htmlWhitespaceSensitivity": "strict",
+    "plugins": [
+        "prettier-plugin-astro",
+        "prettier-plugin-tailwindcss",
+        "@babel/plugin-transform-react-jsx-source"
+    ],
+    "pluginSearchDirs": false
+}

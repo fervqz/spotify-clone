@@ -1,6 +1,6 @@
 ---
 import NowPlaying from "@/components/NowPlaying.astro";
-import MainControls from "@/components/MainControls.astro";
+import MainControls from "@/components-preact/MainControls";
 import SecondaryControls from "@/components/SecondaryControls.astro";
 import CurrentDeviceBanner from "@/components/CurrentDeviceBanner.astro";
 ---
@@ -8,7 +8,7 @@ import CurrentDeviceBanner from "@/components/CurrentDeviceBanner.astro";
 <footer class="bg-black pt-2">
   <div class="px-4 grid grid-cols-12 pb-1">
     <NowPlaying />
-    <MainControls />
+    <MainControls client:only />
     <SecondaryControls />
   </div>
   <CurrentDeviceBanner />
